@@ -26,9 +26,7 @@ public class CashierTrigger : MonoBehaviour
         if(player != null)
         {
             table.TakeFruitToBox();
-
+            player.CollectMoneyOnTable(table);
         }
-
-        table.TakeMoneyToTable();
     }
 }

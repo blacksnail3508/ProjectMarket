@@ -10,4 +10,5 @@ public class GameConfig : ScriptableObject
     public float FruitGatherDelay;
 
     public float CustomerSpawnDelay;
+    public int FruitPrice;
 }

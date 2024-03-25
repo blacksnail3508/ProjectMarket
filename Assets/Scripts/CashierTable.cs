@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class CashierTable : MonoBehaviour, ICashierTable
 {
+    [SerializeField] GameConfig gameConfig;
     [SerializeField] WaitingSlot[] waitingSlots = new WaitingSlot[4];
+    [SerializeField] Box box;
 
+    Queue<Customer> customers = new Queue<Customer>();
+    Customer payingCustomer;
+    public void AddCustomerToQueue(Customer customer)
+    {
+        if(!customers.Contains(customer) )
+        {
+            customers.Enqueue(customer);
+        }
+    }
     public WaitingSlot GetWaitingSlot()
     {
         for (int i = 0; i<waitingSlots.Length; i++)
@@ -28,7 +39,21 @@ public class CashierTable : MonoBehaviour, ICashierTable
 
     public void TakeFruitToBox()
     {
-        throw new System.NotImplementedException();
+        payingCustomer = customers.Dequeue();
+        int fruitNumber = payingCustomer.GetFruitInCart();
+        payingCustomer.HideCart();
+        box.PlaceFruit(fruitNumber);
+        Invoke("CustomerPay" , 1.5f);
+    }
+    private void CustomerPay()
+    {
+        payingCustomer.PutMoneyOnTable(this, payingCustomer.GetFruitInCart()*gameConfig.FruitPrice);
+        payingCustomer.GoHome();
+
+        foreach (var customer in customers)
+        {
+            customer.GoToCashierTable();
+        }
     }
 
     public void TakeMoneyToTable()

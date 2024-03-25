@@ -12,7 +12,7 @@ public interface ICustomer
 }
 public enum CustomerState
 {
-    FindShelfPhase = 0,
+    MovementPhase = 0,
     PickingFruitPhase = 1,
     PaymentPhase = 2,
     GoHomePase = 3,

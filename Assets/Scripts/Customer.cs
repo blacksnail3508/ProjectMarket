@@ -12,15 +12,16 @@ public class Customer : MonoBehaviour, ICustomer
     [SerializeField] GameObject[] carts = new GameObject[4];
 
     WaitingSlot waitingSlotCache;
-    CustomerState state = CustomerState.FindShelfPhase;
+    CustomerState state = CustomerState.MovementPhase;
     FruitShelf shelfCache;
     CashierTable cashierTableCache;
     int cart = 0;
     int targetFruit = 3;
 
+
     private void Update()
     {
-        if (state == CustomerState.FindShelfPhase)
+        if (state == CustomerState.MovementPhase)
         {
 
         }
@@ -32,12 +33,12 @@ public class Customer : MonoBehaviour, ICustomer
     }
     public void GetMarketFurniture(FruitShelf shelf , CashierTable cashierTable)
     {
-        shelfCache=shelf;
+        shelfCache = shelf;
         cashierTableCache=cashierTable;
     }
     public void GoToFruitShelf()
     {
-        waitingSlotCache=shelfCache.GetWaitingSlot();
+        waitingSlotCache = shelfCache.GetWaitingSlot();
 
         //calculate direction and move time
         var targetPos = waitingSlotCache.GetPosition();
@@ -60,7 +61,7 @@ public class Customer : MonoBehaviour, ICustomer
             //change state
             state = CustomerState.PickingFruitPhase;
         });
-
+        cashierTableCache.AddCustomerToQueue(this);
         waitingSlotCache.Asign();
     }
 
@@ -81,11 +82,11 @@ public class Customer : MonoBehaviour, ICustomer
         ShowTarget();
 
         //check if meet condition
-        if (cart==targetFruit)
+        if (cart >= targetFruit)
         {
             //change to next phase
-            state=CustomerState.PaymentPhase;
-            if (!cashierTableCache.IsFullCustommer())
+            state = CustomerState.MovementPhase;
+            if(!cashierTableCache.IsFullCustommer())
             {
                 //release position for new customer
                 waitingSlotCache.Clear();
@@ -100,7 +101,9 @@ public class Customer : MonoBehaviour, ICustomer
     }
     public void GoHome()
     {
-        throw new System.NotImplementedException();
+        BringFruitBox();
+        waitingSlotCache.Clear();
+        ReturnPool();
     }
 
     public void GoToCashierTable()
@@ -126,10 +129,14 @@ public class Customer : MonoBehaviour, ICustomer
             animator.SetDirection(direction);
 
             //change state
-            state=CustomerState.PickingFruitPhase;
+            state=CustomerState.PaymentPhase;
         });
 
         waitingSlotCache.Asign();
+    }
+    public int GetFruitInCart()
+    {
+        return cart;
     }
     public void PutMoneyOnTable(CashierTable table , float amount)
     {
