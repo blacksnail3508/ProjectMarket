@@ -1,5 +1,6 @@
 public interface ITree
 {
     public void SpawnFruit();
-    public IFruit HarvestFruit();
+    public void HarvestFruit();
+    public bool IsEmpty();
 }

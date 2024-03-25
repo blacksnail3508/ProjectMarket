@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class MarketManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameConfig gameConfig;
+    [SerializeField] FruitShelf shelf;
+    [SerializeField] CashierTable table;
+    [SerializeField] CustommerSpawner spawner;
+    float timer = 0;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (!shelf.IsFullCustommer())
+        {
+            if (timer <=0)
+            {
+                var newCustomer = spawner.SpawnCustomer();
+                newCustomer.GetMarketFurniture(shelf, table);
+
+                newCustomer.gameObject.SetActive(true);
+                newCustomer.HideCart();
+                newCustomer.RandomTarget();
+                newCustomer.GoToFruitShelf();
+                timer = gameConfig.CustomerSpawnDelay;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
+        }
     }
 }
