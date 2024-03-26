@@ -2,7 +2,7 @@ public interface ICashierTable
 {
     public void TakeFruitToBox();
 
-    public void TakeMoneyToTable();
-    public WaitingSlot GetWaitingSlot();
+    public void ShowMoney(int amount);
+    public WaitingSlot GetWaitingSlot(Customer customer);
     public bool IsFullCustommer();
 }

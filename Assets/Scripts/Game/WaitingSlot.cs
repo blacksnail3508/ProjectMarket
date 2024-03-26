@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaitingSlot : MonoBehaviour
 {
     Transform transformCache;
+    public int index;
     private void Awake()
     {
         transformCache = GetComponent<Transform>();

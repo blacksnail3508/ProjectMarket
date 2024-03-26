@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79120a7e0f60e2c4fb8469d1b1932c1f, type: 3}
-  m_Name: GameConfig
+  m_Script: {fileID: 11500000, guid: 7ecec9f68b072ee47b1e285e3955fbb0, type: 3}
+  m_Name: MoneyLibrary
   m_EditorClassIdentifier: 
-  CharacterMovementSpeed: 3.71
-  FruitSpawnTime: 2
-  FruitGatherDelay: 0.1
-  CustomerSpawnDelay: 5
-  FruitPrice: 1
-  MoneyCollectDelay: 0.1
+  money: 0

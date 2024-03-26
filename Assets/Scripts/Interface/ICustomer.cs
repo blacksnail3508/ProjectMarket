@@ -1,10 +1,9 @@
 public interface ICustomer
 {
-    public void GetMarketFurniture(FruitShelf shelf , CashierTable cashierTable);
+    public void GetMarketFurniture(FruitShelf shelf ,CashierTable cashierTable);
     public void GoToFruitShelf();
     public void AddFruitToCart();
     public void GoToCashierTable();
-    public void PutMoneyOnTable(CashierTable table , float amount);
     public void BringFruitBox();
     public void GoHome();
     public void ReturnPool();

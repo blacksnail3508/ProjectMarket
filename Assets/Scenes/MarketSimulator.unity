@@ -465,7 +465,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 69
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -646,6 +646,7 @@ GameObject:
   - component: {fileID: 607955271}
   - component: {fileID: 607955273}
   - component: {fileID: 607955272}
+  - component: {fileID: 607955274}
   m_Layer: 5
   m_Name: money_box
   m_TagString: Untagged
@@ -712,6 +713,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607955270}
   m_CullTransparentMesh: 1
+--- !u!114 &607955274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607955270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95de20ff6185bc64895a1c01172a3905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyData: {fileID: 11400000, guid: 6d20c901467ca0c41ab57cf0f3847679, type: 2}
+  moneyText: {fileID: 479847559}
 --- !u!1 &642749363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,6 +1690,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5502193579225660540, guid: 49227bb17e1836b4cbd9b66b4ab924fc, type: 3}
+      propertyPath: moneyLibrary
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d20c901467ca0c41ab57cf0f3847679, type: 2}
     - target: {fileID: 7277541473411099691, guid: 49227bb17e1836b4cbd9b66b4ab924fc, type: 3}
       propertyPath: m_Name
       value: CashierTable
